@@ -1,12 +1,19 @@
-# mcp-server-appwrite: An Appwrite MCP server
+# Appwrite MCP server
 
 ## Overview
 
-A Model Context Protocol server for interacting with Appwrite's database services. This server provides tools to manage databases, collections, documents, and attributes within your Appwrite project.
+A Model Context Protocol server for interacting with Appwrite's API. This server provides tools to manage databases, users, functions, teams, and more within your Appwrite project.
 
-### Tools
+Currently the server supports the following tools:
 
-
+- [x] Databases
+- [ ] Users
+- [ ] Teams
+- [ ] Storage
+- [ ] Functions
+- [ ] Messaging
+- [ ] Locale
+- [ ] Avatars
 
 ### Installation
 
