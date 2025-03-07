@@ -106,18 +106,7 @@ Add to your Zed settings.json:
 
 ## Debugging
 
-You can use the MCP inspector to debug the server. For `uvx` installations:
-
-```bash
-npx @modelcontextprotocol/inspector \
-  uv \
-  run mcp-server-appwrite \
-  --projectId YOUR_PROJECT_ID \
-  --apiKey YOUR_API_KEY \
-  --endpoint YOUR_ENDPOINT
-```
-
-Or if you've installed the package in a specific directory or are developing on it:
+You can use the MCP inspector to debug the server. 
 
 ```bash
 npx @modelcontextprotocol/inspector \
@@ -127,6 +116,8 @@ npx @modelcontextprotocol/inspector \
   --projectId YOUR_PROJECT_ID \
   --apiKey YOUR_API_KEY
 ```
+
+You can then access the inspector at `http://localhost:5173`.
 
 ## License
 
