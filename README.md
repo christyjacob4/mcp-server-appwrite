@@ -7,13 +7,14 @@ A Model Context Protocol server for interacting with Appwrite's API. This server
 Currently the server supports the following tools:
 
 - [x] Databases
-- [ ] Users
-- [ ] Teams
+- [x] Users
+- [x] Teams
+- [x] Messaging
+- [x] Locale
+- [x] Avatars
 - [ ] Storage
 - [ ] Functions
-- [ ] Messaging
-- [ ] Locale
-- [ ] Avatars
+- [ ] Accounts
 
 ### Installation
 
@@ -63,12 +64,24 @@ Add to your Zed settings.json:
 }
 ```
 
+## Development
+
+```bash
+uv pip install -e .
+```
+
+Run the server:
+
+```bash
+uv run -v mcp-server-appwrite --projectId YOUR_PROJECT_ID --apiKey YOUR_API_KEY --endpoint YOUR_ENDPOINT
+```
+
 ## Debugging
 
 You can use the MCP inspector to debug the server. For uvx installations:
 
 ```bash
-npx @modelcontextprotocol/inspector uvx mcp-server-appwrite --projectId YOUR_PROJECT_ID --apiKey YOUR_API_KEY
+npx @modelcontextprotocol/inspector uv run mcp-server-appwrite --projectId YOUR_PROJECT_ID --apiKey YOUR_API_KEY --endpoint YOUR_ENDPOINT
 ```
 
 Or if you've installed the package in a specific directory or are developing on it:
