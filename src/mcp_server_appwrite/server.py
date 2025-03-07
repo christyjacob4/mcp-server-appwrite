@@ -15,7 +15,7 @@ from appwrite.services.locale import Locale
 from appwrite.services.avatars import Avatars
 from appwrite.services.messaging import Messaging
 from appwrite.exception import AppwriteException
-from .tools import ToolManager
+from .tool_manager import ToolManager
 from .service import Service
 
 parser = argparse.ArgumentParser(description='Appwrite MCP Server')
