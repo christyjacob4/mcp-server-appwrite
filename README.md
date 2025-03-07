@@ -78,7 +78,7 @@ uv run -v mcp-server-appwrite --projectId YOUR_PROJECT_ID --apiKey YOUR_API_KEY 
 
 ## Debugging
 
-You can use the MCP inspector to debug the server. For uvx installations:
+You can use the MCP inspector to debug the server. For `uvx` installations:
 
 ```bash
 npx @modelcontextprotocol/inspector uv run mcp-server-appwrite --projectId YOUR_PROJECT_ID --apiKey YOUR_API_KEY --endpoint YOUR_ENDPOINT
@@ -88,11 +88,10 @@ Or if you've installed the package in a specific directory or are developing on 
 
 ```bash
 npx @modelcontextprotocol/inspector \
-     uv \
-     --directory /path/to/mcp/server \
-     run src/mcp_server_appwrite/server.py \
-     --projectId YOUR_PROJECT_ID \
-     --apiKey YOUR_API_KEY
+  uv \
+  --directory src/mcp_server_appwrite run mcp-server-appwrite \
+  --projectId 67b9a5460035d2f0592b \
+  --apiKey standard_19773360ab8f6350b6958ef596c7a849c515034f4cc7b09baa622788c34d40002e2f5ad7570bcbe06a81f845ba43b3e3086097ddc261a40d1396d6a048609a7a06ac88b8587e3a6ba5143626b819bb744a1266e9cdfa95fe2b537a41b2a8fafe6c73afd8d1ed4dcb8009f9b44407a0d72ed263ea34bf0c394324abfc8367029e
 ```
 
 ## License
