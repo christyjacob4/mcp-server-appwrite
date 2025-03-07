@@ -104,6 +104,16 @@ Add to your Zed settings.json:
 }
 ```
 
+### Usage with [Cursor](https://www.cursor.com/)
+
+Head to Cursor `Settings > Features > MCP Servers` and click on **Add New MCP Server**. Choose the type as `Command` and add the command below to the **Command** field.
+
+```
+uv run --directory <path_to_repository> mcp-server-appwrite --projectId <your_project_id> --apiKey <your_api_key>
+```
+
+![Cursor Settings](./images/cursor-integration.png)
+
 ## Debugging
 
 You can use the MCP inspector to debug the server. 

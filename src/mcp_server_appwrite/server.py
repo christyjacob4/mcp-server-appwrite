@@ -1,9 +1,9 @@
 import asyncio
+import mcp.server.stdio
 import mcp.types as types
 from mcp.server import NotificationOptions, Server
 from mcp.server.models import InitializationOptions
 from mcp.shared.exceptions import McpError
-import mcp.server.stdio
 import argparse
 from appwrite.client import Client
 from appwrite.services.databases import Databases
@@ -33,13 +33,13 @@ client.set_key(args.apiKey)
 # Initialize tools manager and register services
 tools_manager = ToolManager()
 tools_manager.register_service(Service(Users(client), "users"))
-tools_manager.register_service(Service(Teams(client), "teams"))
+# tools_manager.register_service(Service(Teams(client), "teams"))
 tools_manager.register_service(Service(Databases(client), "databases"))
-tools_manager.register_service(Service(Storage(client), "storage"))
-tools_manager.register_service(Service(Functions(client), "functions"))
-tools_manager.register_service(Service(Messaging(client), "messaging"))
-tools_manager.register_service(Service(Locale(client), "locale"))
-tools_manager.register_service(Service(Avatars(client), "avatars"))
+# tools_manager.register_service(Service(Storage(client), "storage"))
+# tools_manager.register_service(Service(Functions(client), "functions"))
+# tools_manager.register_service(Service(Messaging(client), "messaging"))
+# tools_manager.register_service(Service(Locale(client), "locale"))
+# tools_manager.register_service(Service(Avatars(client), "avatars"))
 
 async def serve() -> Server:
     server = Server("Appwrite MCP Server")
