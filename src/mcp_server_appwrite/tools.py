@@ -2,7 +2,7 @@ from typing import List, Dict
 from mcp.types import Tool
 from .service import Service
 
-class AppwriteToolsManager:
+class ToolManager:
     def __init__(self):
         self.services: List[Service] = []
         self.tools_registry = {}

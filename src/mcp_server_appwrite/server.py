@@ -15,7 +15,7 @@ from appwrite.services.locale import Locale
 from appwrite.services.avatars import Avatars
 from appwrite.services.messaging import Messaging
 from appwrite.exception import AppwriteException
-from .tools import AppwriteToolsManager
+from .tools import ToolManager
 from .service import Service
 
 parser = argparse.ArgumentParser(description='Appwrite MCP Server')
@@ -31,7 +31,7 @@ client.set_project(args.projectId)
 client.set_key(args.apiKey)
 
 # Initialize tools manager and register services
-tools_manager = AppwriteToolsManager()
+tools_manager = ToolManager()
 tools_manager.register_service(Service(Users(client), "users"))
 tools_manager.register_service(Service(Teams(client), "teams"))
 tools_manager.register_service(Service(Databases(client), "databases"))
