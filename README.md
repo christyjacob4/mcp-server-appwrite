@@ -12,28 +12,46 @@ Currently the server supports the following tools:
 - [x] Messaging
 - [x] Locale
 - [x] Avatars
-- [ ] Storage
-- [ ] Functions
-- [ ] Accounts
+- [x] Storage (Beta)
+- [x] Functions (Beta)
 
-### Installation
+> Please note that the Storage and Functions tools are currently in beta and methods like createFile and createDeployment are not yet supported.
 
-### Using uv (recommended)
+## Local Development
 
-When using [`uv`](https://docs.astral.sh/uv/), no specific installation is needed. We will use [`uvx`](https://docs.astral.sh/uv/guides/tools/) to directly run *mcp-server-appwrite*.
+Clone the repository
 
-### Using PIP
-
-Alternatively, you can install `mcp-server-appwrite` via pip:
-
-```
-pip install mcp-server-appwrite
+```bash
+git clone https://github.com/appwrite/mcp.git
 ```
 
-After installation, you can run it as a script using:
+Install `uv`
 
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
-python -m mcp_server_appwrite
+
+Create virtual environment
+
+```bash
+uv venv
+source .venv/bin/activate
+```
+
+Install dependencies
+
+```bash
+uv pip install -e .
+```
+
+Run the server
+
+```bash
+uv run -v \
+  --directory ./ mcp-server-appwrite \
+  --projectId YOUR_PROJECT_ID \
+  --apiKey YOUR_API_KEY \
+  --endpoint YOUR_ENDPOINT
 ```
 
 ## Configuration
@@ -45,11 +63,24 @@ Add this to your `claude_desktop_config.json`:
 ```json
 "mcpServers": {
   "appwrite": {
-    "command": "uvx",
-    "args": ["mcp-server-appwrite", "--projectId", "YOUR_PROJECT_ID", "--apiKey", "YOUR_API_KEY"]
+    "command": "uv",
+    "args": [
+      "run",
+      "--directory",
+      "<path-to-repository>",
+      "mcp-server-appwrite",
+      "--projectId",
+      "YOUR_PROJECT_ID",
+      "--apiKey",
+      "YOUR_API_KEY"
+    ]
   }
 }
 ```
+
+Upon successful configuration, you should be able to see the server in the list of available servers in Claude Desktop.
+
+![Claude Desktop Config](images/claude-desktop-integration.png)
 
 ### Usage with [Zed](https://github.com/zed-industries/zed)
 
@@ -57,23 +88,20 @@ Add to your Zed settings.json:
 
 ```json
 "context_servers": {
-  "mcp-server-appwrite": {
-    "command": "python",
-    "args": ["-m", "mcp_server_appwrite", "--projectId", "YOUR_PROJECT_ID", "--apiKey", "YOUR_API_KEY"]
+  "appwrite": {
+    "command": "uv",
+    "args": [
+      "run",
+      "--directory",
+      "<path-to-repository>",
+      "mcp-server-appwrite",
+      "--projectId",
+      "YOUR_PROJECT_ID",
+      "--apiKey",
+      "YOUR_API_KEY"
+    ]
   }
 }
-```
-
-## Development
-
-```bash
-uv pip install -e .
-```
-
-Run the server:
-
-```bash
-uv run -v mcp-server-appwrite --projectId YOUR_PROJECT_ID --apiKey YOUR_API_KEY --endpoint YOUR_ENDPOINT
 ```
 
 ## Debugging
@@ -81,7 +109,12 @@ uv run -v mcp-server-appwrite --projectId YOUR_PROJECT_ID --apiKey YOUR_API_KEY 
 You can use the MCP inspector to debug the server. For `uvx` installations:
 
 ```bash
-npx @modelcontextprotocol/inspector uv run mcp-server-appwrite --projectId YOUR_PROJECT_ID --apiKey YOUR_API_KEY --endpoint YOUR_ENDPOINT
+npx @modelcontextprotocol/inspector \
+  uv \
+  run mcp-server-appwrite \
+  --projectId YOUR_PROJECT_ID \
+  --apiKey YOUR_API_KEY \
+  --endpoint YOUR_ENDPOINT
 ```
 
 Or if you've installed the package in a specific directory or are developing on it:
@@ -89,7 +122,8 @@ Or if you've installed the package in a specific directory or are developing on 
 ```bash
 npx @modelcontextprotocol/inspector \
   uv \
-  --directory src/mcp_server_appwrite run mcp-server-appwrite \
+  --directory . \
+  run mcp-server-appwrite \
   --projectId YOUR_PROJECT_ID \
   --apiKey YOUR_API_KEY
 ```
