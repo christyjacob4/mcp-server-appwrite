@@ -38,12 +38,6 @@ uv venv
 source .venv/bin/activate
 ```
 
-Install dependencies
-
-```bash
-uv pip install -e .
-```
-
 ## Configuration
 
 Create a `.env` file in the root directory based on `.env.example`:
