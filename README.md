@@ -44,17 +44,21 @@ Install dependencies
 uv pip install -e .
 ```
 
+## Configuration
+
+Create a `.env` file in the root directory based on `.env.example`:
+
+```env
+APPWRITE_API_KEY=your-api-key
+APPWRITE_PROJECT_ID=your-project-id
+APPWRITE_ENDPOINT=your-endpoint  # Optional, defaults to https://cloud.appwrite.io/v1
+```
+
 Run the server
 
 ```bash
-uv run -v \
-  --directory ./ mcp-server-appwrite \
-  --projectId YOUR_PROJECT_ID \
-  --apiKey YOUR_API_KEY \
-  --endpoint YOUR_ENDPOINT
+uv run -v --directory ./ mcp-server-appwrite
 ```
-
-## Configuration
 
 ### Usage with Claude Desktop
 
@@ -68,12 +72,13 @@ Add this to your `claude_desktop_config.json`:
       "run",
       "--directory",
       "<path-to-repository>",
-      "mcp-server-appwrite",
-      "--projectId",
-      "YOUR_PROJECT_ID",
-      "--apiKey",
-      "YOUR_API_KEY"
-    ]
+      "mcp-server-appwrite"
+    ],
+    "env": {
+      "APPWRITE_PROJECT_ID": "your-project-id",
+      "APPWRITE_API_KEY": "your-api-key",
+      "APPWRITE_ENDPOINT": "your-endpoint"  // Optional
+    }
   }
 }
 ```
@@ -94,12 +99,13 @@ Add to your Zed settings.json:
       "run",
       "--directory",
       "<path-to-repository>",
-      "mcp-server-appwrite",
-      "--projectId",
-      "YOUR_PROJECT_ID",
-      "--apiKey",
-      "YOUR_API_KEY"
-    ]
+      "mcp-server-appwrite"
+    ],
+    "env": {
+      "APPWRITE_PROJECT_ID": "your-project-id",
+      "APPWRITE_API_KEY": "your-api-key",
+      "APPWRITE_ENDPOINT": "your-endpoint"  // Optional
+    }
   }
 }
 ```
@@ -108,8 +114,8 @@ Add to your Zed settings.json:
 
 Head to Cursor `Settings > Features > MCP Servers` and click on **Add New MCP Server**. Choose the type as `Command` and add the command below to the **Command** field.
 
-```
-uv run --directory <path_to_repository> mcp-server-appwrite --projectId <your_project_id> --apiKey <your_api_key>
+```bash
+APPWRITE_PROJECT_ID=your-project-id APPWRITE_API_KEY=your-api-key uv run --directory <path_to_repository> mcp-server-appwrite
 ```
 
 ![Cursor Settings](./images/cursor-integration.png)
@@ -122,13 +128,24 @@ You can use the MCP inspector to debug the server.
 npx @modelcontextprotocol/inspector \
   uv \
   --directory . \
-  run mcp-server-appwrite \
-  --projectId YOUR_PROJECT_ID \
-  --apiKey YOUR_API_KEY
+  run mcp-server-appwrite
 ```
 
-You can then access the inspector at `http://localhost:5173`.
+Make sure your `.env` file is properly configured before running the inspector. You can then access the inspector at `http://localhost:5173`.
 
 ## License
 
 This MCP server is licensed under the MIT License. This means you are free to use, modify, and distribute the software, subject to the terms and conditions of the MIT License. For more details, please see the LICENSE file in the project repository.
+
+## Todos
+- Add MCP server to registries
+  - Glama
+  - https://github.com/chatmcp/mcp-directory
+  - https://mcp.so/
+  - https://github.com/punkpeye/awesome-mcp-servers
+  - https://portkey.ai/mcp-servers
+  - https://www.claudemcp.com/servers
+- Add support for SSE server
+- Release to PIP
+- ✅ Add support for env vars
+- Add suppport for resources

@@ -1,10 +1,11 @@
 import asyncio
+import os
 import mcp.server.stdio
 import mcp.types as types
 from mcp.server import NotificationOptions, Server
 from mcp.server.models import InitializationOptions
 from mcp.shared.exceptions import McpError
-import argparse
+from dotenv import load_dotenv
 from appwrite.client import Client
 from appwrite.services.databases import Databases
 from appwrite.services.users import Users
@@ -18,31 +19,44 @@ from appwrite.exception import AppwriteException
 from .tool_manager import ToolManager
 from .service import Service
 
-parser = argparse.ArgumentParser(description='Appwrite MCP Server')
-parser.add_argument('--projectId', required=True, help='Your Appwrite project ID')
-parser.add_argument('--apiKey', required=True, help='Your Appwrite API key')
-parser.add_argument('--endpoint', required=False, help='Your Appwrite endpoint', default='https://cloud.appwrite.io/v1')
-args = parser.parse_args()
+# Load environment variables from .env file
+load_dotenv()
+
+# Get environment variables
+project_id = os.getenv('APPWRITE_PROJECT_ID')
+api_key = os.getenv('APPWRITE_API_KEY')
+endpoint = os.getenv('APPWRITE_ENDPOINT', 'https://cloud.appwrite.io/v1')
+
+if not project_id or not api_key:
+    raise ValueError("APPWRITE_PROJECT_ID and APPWRITE_API_KEY must be set in environment variables")
 
 # Initialize Appwrite client
 client = Client()
-client.set_endpoint(args.endpoint)
-client.set_project(args.projectId)
-client.set_key(args.apiKey)
+client.set_endpoint(endpoint)
+client.set_project(project_id)
+client.set_key(api_key)
 
 # Initialize tools manager and register services
 tools_manager = ToolManager()
 tools_manager.register_service(Service(Users(client), "users"))
-# tools_manager.register_service(Service(Teams(client), "teams"))
+tools_manager.register_service(Service(Teams(client), "teams"))
 tools_manager.register_service(Service(Databases(client), "databases"))
-# tools_manager.register_service(Service(Storage(client), "storage"))
-# tools_manager.register_service(Service(Functions(client), "functions"))
-# tools_manager.register_service(Service(Messaging(client), "messaging"))
-# tools_manager.register_service(Service(Locale(client), "locale"))
-# tools_manager.register_service(Service(Avatars(client), "avatars"))
+tools_manager.register_service(Service(Storage(client), "storage"))
+tools_manager.register_service(Service(Functions(client), "functions"))
+tools_manager.register_service(Service(Messaging(client), "messaging"))
+tools_manager.register_service(Service(Locale(client), "locale"))
+tools_manager.register_service(Service(Avatars(client), "avatars"))
 
 async def serve() -> Server:
     server = Server("Appwrite MCP Server")
+    
+    # @server.list_resources()
+    # async def handle_list_resources() -> list[types.Resource]:
+    #     return tools_manager.get_all_resources()
+    
+    # @server.read_resource()
+    # async def handle_read_resource(resource_id: str) -> str:
+    #     return tools_manager.get_resource(resource_id)
     
     @server.list_tools()
     async def handle_list_tools() -> list[types.Tool]:

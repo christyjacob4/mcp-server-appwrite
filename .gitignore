@@ -11,3 +11,5 @@ wheels/
 
 # VSCode
 .vscode
+
+.env
