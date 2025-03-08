@@ -1,8 +1,20 @@
 # Appwrite MCP server
 
+<!-- Cover image will go here once available -->
+
 ## Overview
 
 A Model Context Protocol server for interacting with Appwrite's API. This server provides tools to manage databases, users, functions, teams, and more within your Appwrite project.
+
+## Quick Links
+- [Configuration](#configuration)
+- [Installation](#installation)
+- IDE Integration:
+  - [Claude Desktop](#usage-with-claude-desktop)
+  - [Zed](#usage-with-zed)
+  - [Cursor](#usage-with-cursor)
+- [Local Development](#local-development)
+- [Debugging](#debugging)
 
 Currently the server supports the following tools:
 
