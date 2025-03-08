@@ -154,6 +154,4 @@ This MCP server is licensed under the MIT License. This means you are free to us
   - https://portkey.ai/mcp-servers
   - https://www.claudemcp.com/servers
 - Add support for SSE server
-- Release to PIP
-- ✅ Add support for env vars
 - Add suppport for resources
