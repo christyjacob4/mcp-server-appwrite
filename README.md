@@ -10,8 +10,6 @@ Currently the server supports the following tools:
 - [x] Users
 - [x] Teams
 - [x] Messaging
-- [x] Locale
-- [x] Avatars
 - [x] Storage (Beta)
 - [x] Functions (Beta)
 
@@ -26,6 +24,7 @@ APPWRITE_API_KEY=your-api-key
 APPWRITE_PROJECT_ID=your-project-id
 APPWRITE_ENDPOINT=your-endpoint  # Optional, defaults to https://cloud.appwrite.io/v1
 ```
+> Note: Ensure that your API Key has the necessary scopes to access the resources you want to use.
 
 ## Installation
 
@@ -46,33 +45,6 @@ Then run the server using
 
 ```bash
 python -m mcp_server_appwrite
-```
-
-## Local Development
-
-Clone the repository
-
-```bash
-git clone https://github.com/appwrite/mcp.git
-```
-
-Install `uv`
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-Create virtual environment
-
-```bash
-uv venv
-source .venv/bin/activate
-```
-
-Run the server
-
-```bash
-uv run -v --directory ./ mcp-server-appwrite
 ```
 
 ## Usage with Claude Desktop
@@ -118,7 +90,7 @@ Add to your Zed settings.json:
 }
 ```
 
-### Usage with [Cursor](https://www.cursor.com/)
+## Usage with [Cursor](https://www.cursor.com/)
 
 Head to Cursor `Settings > Features > MCP Servers` and click on **Add New MCP Server**. Choose the type as `Command` and add the command below to the **Command** field.
 
@@ -127,6 +99,33 @@ APPWRITE_PROJECT_ID=your-project-id APPWRITE_API_KEY=your-api-key uvx mcp-server
 ```
 
 ![Cursor Settings](./images/cursor-integration.png)
+
+## Local Development
+
+Clone the repository
+
+```bash
+git clone https://github.com/appwrite/mcp.git
+```
+
+Install `uv`
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Create virtual environment
+
+```bash
+uv venv
+source .venv/bin/activate
+```
+
+Run the server
+
+```bash
+uv run -v --directory ./ mcp-server-appwrite
+```
 
 ## Debugging
 
@@ -154,4 +153,3 @@ This MCP server is licensed under the MIT License. This means you are free to us
   - https://portkey.ai/mcp-servers
   - https://www.claudemcp.com/servers
 - Add support for SSE server
-- Add suppport for resources
