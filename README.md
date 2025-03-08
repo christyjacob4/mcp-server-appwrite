@@ -8,12 +8,8 @@ Currently the server supports the following tools:
 
 - [x] Databases
 - [x] Users
-- [x] Teams
-- [x] Messaging
-- [x] Storage (Beta)
-- [x] Functions (Beta)
 
-> Please note that the Storage and Functions tools are currently in beta and methods like createFile and createDeployment are not yet supported.
+> Please note that adding a lot of tools exceeds the context window of the LLM. As a result, we will make available a curated list of tools that are most commonly used.
 
 ## Configuration
 
