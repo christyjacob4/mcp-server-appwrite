@@ -17,6 +17,37 @@ Currently the server supports the following tools:
 
 > Please note that the Storage and Functions tools are currently in beta and methods like createFile and createDeployment are not yet supported.
 
+## Configuration
+
+Create a `.env` file in the directory you're runing the server from:
+
+```env
+APPWRITE_API_KEY=your-api-key
+APPWRITE_PROJECT_ID=your-project-id
+APPWRITE_ENDPOINT=your-endpoint  # Optional, defaults to https://cloud.appwrite.io/v1
+```
+
+## Installation
+
+### Using uv (recommended)
+When using [`uv`](https://docs.astral.sh/uv/) no specific installation is needed. We will
+use [`uvx`](https://docs.astral.sh/uv/guides/tools/) to directly run *mcp-server-sentry*.
+
+```bash
+uvx run mcp-server-appwrite
+```
+
+### Using pip
+
+```bash
+pip install mcp-server-appwrite
+```
+Then run the server using 
+
+```bash
+python -m mcp_server_appwrite
+```
+
 ## Local Development
 
 Clone the repository
@@ -38,34 +69,21 @@ uv venv
 source .venv/bin/activate
 ```
 
-## Configuration
-
-Create a `.env` file in the root directory based on `.env.example`:
-
-```env
-APPWRITE_API_KEY=your-api-key
-APPWRITE_PROJECT_ID=your-project-id
-APPWRITE_ENDPOINT=your-endpoint  # Optional, defaults to https://cloud.appwrite.io/v1
-```
-
 Run the server
 
 ```bash
 uv run -v --directory ./ mcp-server-appwrite
 ```
 
-### Usage with Claude Desktop
+## Usage with Claude Desktop
 
 Add this to your `claude_desktop_config.json`:
 
 ```json
 "mcpServers": {
   "appwrite": {
-    "command": "uv",
+    "command": "uvx",
     "args": [
-      "run",
-      "--directory",
-      "<path-to-repository>",
       "mcp-server-appwrite"
     ],
     "env": {
@@ -76,23 +94,19 @@ Add this to your `claude_desktop_config.json`:
   }
 }
 ```
-
 Upon successful configuration, you should be able to see the server in the list of available servers in Claude Desktop.
 
 ![Claude Desktop Config](images/claude-desktop-integration.png)
 
-### Usage with [Zed](https://github.com/zed-industries/zed)
+## Usage with [Zed](https://github.com/zed-industries/zed)
 
 Add to your Zed settings.json:
 
 ```json
 "context_servers": {
   "appwrite": {
-    "command": "uv",
+    "command": "uvx",
     "args": [
-      "run",
-      "--directory",
-      "<path-to-repository>",
       "mcp-server-appwrite"
     ],
     "env": {
@@ -109,7 +123,7 @@ Add to your Zed settings.json:
 Head to Cursor `Settings > Features > MCP Servers` and click on **Add New MCP Server**. Choose the type as `Command` and add the command below to the **Command** field.
 
 ```bash
-APPWRITE_PROJECT_ID=your-project-id APPWRITE_API_KEY=your-api-key uv run --directory <path_to_repository> mcp-server-appwrite
+APPWRITE_PROJECT_ID=your-project-id APPWRITE_API_KEY=your-api-key uvx mcp-server-appwrite
 ```
 
 ![Cursor Settings](./images/cursor-integration.png)
