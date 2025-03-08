@@ -39,24 +39,14 @@ client.set_key(api_key)
 # Initialize tools manager and register services
 tools_manager = ToolManager()
 tools_manager.register_service(Service(Users(client), "users"))
-tools_manager.register_service(Service(Teams(client), "teams"))
+# tools_manager.register_service(Service(Teams(client), "teams"))
 tools_manager.register_service(Service(Databases(client), "databases"))
-tools_manager.register_service(Service(Storage(client), "storage"))
-tools_manager.register_service(Service(Functions(client), "functions"))
-tools_manager.register_service(Service(Messaging(client), "messaging"))
-tools_manager.register_service(Service(Locale(client), "locale"))
-tools_manager.register_service(Service(Avatars(client), "avatars"))
+# tools_manager.register_service(Service(Storage(client), "storage"))
+# tools_manager.register_service(Service(Functions(client), "functions"))
+# tools_manager.register_service(Service(Messaging(client), "messaging"))
 
 async def serve() -> Server:
     server = Server("Appwrite MCP Server")
-    
-    # @server.list_resources()
-    # async def handle_list_resources() -> list[types.Resource]:
-    #     return tools_manager.get_all_resources()
-    
-    # @server.read_resource()
-    # async def handle_read_resource(resource_id: str) -> str:
-    #     return tools_manager.get_resource(resource_id)
     
     @server.list_tools()
     async def handle_list_tools() -> list[types.Tool]:
