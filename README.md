@@ -16,7 +16,7 @@ A Model Context Protocol server for interacting with Appwrite's API. This server
 - [Local Development](#local-development)
 - [Debugging](#debugging)
 
-Currently the server supports the following tools:
+Currently, the server supports the following tools:
 
 - [x] Databases
 - [x] Users
@@ -25,7 +25,7 @@ Currently the server supports the following tools:
 
 ## Configuration
 
-Create a `.env` file in the directory you're runing the server from:
+Create a `.env` file in the directory you're running the server from:
 
 ```env
 APPWRITE_API_KEY=your-api-key
@@ -38,7 +38,7 @@ APPWRITE_ENDPOINT=your-endpoint  # Optional, defaults to https://cloud.appwrite.
 
 ### Using uv (recommended)
 When using [`uv`](https://docs.astral.sh/uv/) no specific installation is needed. We will
-use [`uvx`](https://docs.astral.sh/uv/guides/tools/) to directly run *mcp-server-sentry*.
+use [`uvx`](https://docs.astral.sh/uv/guides/tools/) to directly run *mcp-server-appwrite*.
 
 ```bash
 uvx run mcp-server-appwrite
